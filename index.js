@@ -19,6 +19,7 @@ const localStrategy = require("passport-local");
 const ExpressError = require("./utils/ExpressError");
 const mongoSanitize = require("express-mongo-sanitize");
 const helmet  = require("helmet");
+const cors=require('cors');
 
 const MongoStore = require("connect-mongo");
 
@@ -26,7 +27,7 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }));
 
-
+app.use(cors())
 
 const User = require("./models/user");
 
@@ -54,7 +55,8 @@ mongoose.connect(dbUrl)
 
   
 app.set("view engine","ejs");
-app.set("views",path.join(__dirname,"views"));
+// app.set("views",path.join(__dirname,"views"));
+app.set("views",__dirname+'/views');
 app.use(express.urlencoded({extended:true}));
 app.listen(5500,()=>{
     console.log("started listening to the port 5500");
