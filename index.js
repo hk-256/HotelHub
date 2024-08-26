@@ -41,8 +41,8 @@ app.engine("ejs",ejsMate);
 
 
 
-// const dbUrl = process.env.DB_URL;
-const dbUrl = 'mongodb://127.0.0.1:27017/yelp-camp'
+const dbUrl = process.env.DB_URL;
+// const dbUrl = 'mongodb://127.0.0.1:27017/yelp-camp'
 mongoose.connect(dbUrl)
   .then(()=>{
     console.log("connected");
@@ -142,12 +142,6 @@ passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// app.get("/user",async (req,res)=>{
-
-//     const user = new User({email: "demo@email",username:"demoUsername"});
-//     const rex = await User.register(user,"password");
-//     res.send(rex);
-// })
 
 app.use((req,res,next)=>{
     
@@ -168,13 +162,9 @@ app.use("/campground/:id/review",reviewRoute);
 
 
 
-
-
-
 app.all("*",(req,res,next)=>{
     throw new ExpressError("Nothing found",404);
 })
-
 
 app.use((err,req,res,next)=>{
     const {status=500} = err;
