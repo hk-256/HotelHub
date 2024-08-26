@@ -156,8 +156,8 @@ app.get("/",(req,res)=>{
 res.render("home");
 })
 
-app.use("https://hotel-hub-inky.vercel.app/",userRoute);
-app.use("https://hotel-hub-inky.vercel.app/campground",campgroundRoute);
+app.use("/",userRoute);
+app.use("/campground",campgroundRoute);
 app.use("/campground/:id/review",reviewRoute);
 
 
@@ -172,7 +172,7 @@ app.use((err,req,res,next)=>{
         err.message = "Error Occured"; 
     }
     
-    res.status(status).render("error",{err});
+    res.status(status).render("error",{err}); 
 })
 
 
