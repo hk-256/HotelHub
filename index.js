@@ -54,9 +54,11 @@ mongoose.connect(dbUrl)
   })
 
   
-app.set("view engine","ejs");
+// app.set("view engine","ejs");
 // app.set("views",path.join(__dirname,"views"));
-app.set("views",__dirname+'/views');
+// app.set("views",__dirname+'/views');
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({extended:true}));
 app.listen(5500,()=>{
     console.log("started listening to the port 5500");
