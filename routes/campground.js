@@ -18,6 +18,9 @@ const upload = multer({storage});
 router.route("/")
     .get(catchAsync(campground.index))
     .post(isLoggedIn, upload.array("image"),validateCampground, catchAsync(campground.createCampground))
+
+router.route("/search/:id")
+    .get(catchAsync(campground.search))
     
 router.get("/new",isLoggedIn,campground.renderNewFrom)
 

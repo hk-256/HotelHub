@@ -13,6 +13,9 @@
         
       
       <div class="navbar-nav position-absolute top-0 end-0 mx-5 my-2">
+        
+          <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search" id="search" name="search">
+          <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
         <% if(!currUser){ %>
         <a class="nav-link" href="/login">Login</a>
         <a class="nav-link" href="/register">Register</a>
@@ -25,3 +28,19 @@
     </div>
   </div>
   </nav>
+
+  <script>
+    const id = document.querySelector("#search");
+    id.addEventListener("keydown",(e)=>{
+      if(e.key == "Enter"){
+        const query = document.querySelector('#search').value;
+        // console.log(query);
+        window.location.replace(`/campground/search/${query}`);
+      }
+    })
+    // function search(){
+    //     const query = document.querySelector('#search').value;
+    //     window.location.replace(`/search/${query}`);
+    // }
+
+</script>

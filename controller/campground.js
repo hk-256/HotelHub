@@ -16,7 +16,17 @@ module.exports.index = async (req,res)=>{
     // console.log(camps);
     res.render("campground/index",{camps});
 }
-
+module.exports.search = async(req,res)=>{
+    const {id} = req.params;
+    const camps = await campground.find({
+        'title': {
+            '$regex': id,
+            '$options': 'i'
+        }
+    }).limit(20);
+    
+    res.render("campground/index",{camps});
+}
 module.exports.renderNewFrom = (req,res)=>{
     res.render("campground/new");
 }
@@ -53,6 +63,7 @@ module.exports.showCampground = async (req,res)=>{
         req.flash("error","campground not found");
         return res.redirect("/campground");
     }
+    console.log(camp);
     res.render("campground/show",{camp});
 }
 
